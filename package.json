@@ -1,0 +1,19 @@
+{
+  "name": "alkemy-balance",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patriciodfernandez/alkemy-balance.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patriciodfernandez/alkemy-balance/issues"
+  },
+  "homepage": "https://github.com/patriciodfernandez/alkemy-balance#readme"
+}
