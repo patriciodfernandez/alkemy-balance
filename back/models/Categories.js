@@ -5,13 +5,25 @@ class Categories extends S.Model {}
 
 Categories.init(
   {
-    statusDescription: {
-      type: S.TEXT,
+    insumos: {
+      type: S.BOOLEAN,
       allowNull: false,
     },
-    photo: {
-      type: S.STRING,
-     // allowNull: false,
+    comida: {
+      type: S.BOOLEAN,
+      allowNull: false,
+    },
+    servicios: {
+      type: S.BOOLEAN,
+      allowNull: false,
+    },
+    impuestos: {
+      type: S.BOOLEAN,
+      allowNull: false,
+    },
+    gastosgenerales: {
+      type: S.BOOLEAN,
+      allowNull: false,
     },
   },
   { sequelize: db, modelName: "categories" }
