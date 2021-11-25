@@ -21,10 +21,6 @@ User.init(
         isEmail: true,
       },
     },
-    isAdmin: {
-      type: S.BOOLEAN,
-      defaultValue: false,
-    },
     password: {
       type: S.STRING,
       allowNull: false,

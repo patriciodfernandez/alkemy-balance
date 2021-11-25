@@ -8,7 +8,7 @@ const checkUserJWT = (req, res, next) => {
   console.log('------------------');
   console.log('TOKENNNN ',token);
   if (token === null) return res.sendStatus(401);
-  jwt.verify(token, "IOTKEY", (err, user) => {
+  jwt.verify(token, "BALANCEKEY", (err, user) => {
     if (err) return res.sendStatus(403);
     req.user = user;
     next();

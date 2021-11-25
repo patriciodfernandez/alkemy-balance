@@ -22,7 +22,7 @@ router.post("/", (req, res, next) => {
           lastName: usuario.lastName,
           isAdmin: usuario.isAdmin
           
-        },"IOTKEY",(err, token) => {
+        },"BALANCEKEY",(err, token) => {
           res.json({token:token, usuario:usuario});
         }
       );

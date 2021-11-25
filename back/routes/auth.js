@@ -10,7 +10,7 @@ router.use("/register", registerRoute);
 router.post("/me", (req, res) => {
   const token = req.headers.authorization;
 
-  const data = jwt.verify(token, "IOTKEY");
+  const data = jwt.verify(token, "BALANCEKEY");
 
   if (data) {
     res.send(data);
