@@ -2,7 +2,7 @@ import React ,{ useState, useEffect }from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import logo from '../../assets/logo.png'
-
+ 
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Container from 'react-bootstrap/Container'
 import InputGroup from 'react-bootstrap/InputGroup'
@@ -40,34 +40,36 @@ const AppBar = ( ) => {
       <Navbar expand="lg" bg="primary">
         <Container fluid style={{maxWidth: 1500}}>
         <Link to="/">
-          <Navbar.Brand ><img src={logo} width="50px" alt="IOT COMERCE"/></Navbar.Brand>
+          <Navbar.Brand ><img src={logo} alt="IOT COMERCE"/></Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto"  >
             {/* <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link> */}
-            <NavDropdown
-              variant="light"
-               id="basic-nav-dropdown"
-             >
-            
-              
-            </NavDropdown>
-            
+         
+            <Form   className='w-100'>
+            <InputGroup id={s.max_width} className={s.form} onChange={(e)=> setKeyword(e.target.value) }>
+                <FormControl type="text" placeholder="¿Qué estás buscando?" />
+                
+                <InputGroup.Append >
+                  <Button variant="light" style={{maxHeight: 38}}> <AiOutlineSearch /> </Button>
+                </InputGroup.Append>
+            </InputGroup>
+            </Form>
           
           </Nav>
        
           {user.id ? (
-            <div >
-              <div className="titleName">{`¡Hola, ${user.name}!`}</div>
+            <div className={s.flex}>
+              <div className="text-white">{`¡Hola, ${user.name}!`}</div>
               <NavDropdown
               variant="light"
               title={<RiAccountCircleFill/>}
               id="basic-nav-dropdown"
-               
+              id={s.cats}
               alignRight
-              
+              className={s.dropdownPerfil}
               >
                 <NavDropdown.Item onClick={()=>history.push('/pastOrders')}>Mis compras</NavDropdown.Item>
                 <NavDropdown.Divider />
