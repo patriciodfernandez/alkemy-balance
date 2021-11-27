@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "../Login/Login.css";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { register } from "../../state/user";
 import swal from "sweetalert";
  
 
 const Index = () => {
-  let history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [newUser, setNewUser] = useState({});
 
@@ -31,7 +31,7 @@ const Index = () => {
           return swal("El usuario ya existe");
         } else {
           swal("¡Usuario registrado exitosamente!");
-          history.push("/login");
+          navigate("/login");
         }
       });
     }

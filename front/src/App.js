@@ -7,8 +7,8 @@ import Register from "./components/Register/Index";
 // import Footer from "./components/Footer.jsx";
 import AppBar from "./components/AppBar/AppBar";
 import "./App.css";
-import { BrowserRouter as Switch, Route } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Switch, Route, Routes } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css"; 
 
 import { setUser } from "./state/user";
 
@@ -25,23 +25,19 @@ const App = () => {
         dispatch(setUser(data.data));
       });
     }
-
-   }, []);
+  }, []);
 
   return (
     <div>
       <AppBar />
-      <Switch>
-        <Route exact path="/">
-          <Home></Home>
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
-      </Switch>
+
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
+         
+      </Routes>
     </div>
   );
 };

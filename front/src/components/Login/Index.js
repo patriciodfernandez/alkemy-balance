@@ -2,12 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../state/user";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { Link } from "react-router-dom";
 import "./Login.css";
 const Index = () => {
-  let history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,8 +24,9 @@ const Index = () => {
 
         if (data.payload) {
           localStorage.setItem("token", data.payload.token);
-          history.push("/");
           swal("Logged in!");
+          navigate("/");
+
         }
       });
     } else {
