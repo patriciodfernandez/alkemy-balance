@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import logo from "../../assets/libro-mayor.png";
@@ -20,41 +20,43 @@ import { setUser } from "../../state/user";
 import { useNavigate } from "react-router-dom";
 
 const AppBar = () => {
-
-  const user = useSelector((state) => state.user);
-  console.log(user)
-  const navigate = useNavigate();
-
- 
   const dispatch = useDispatch();
 
+  const user = useSelector((state) => state.user);
+  console.log(user);
+  const navigate = useNavigate();
 
   const logOut = (e) => {
     e.preventDefault();
     localStorage.clear();
- 
+
     dispatch(logout());
-    navigate('/')
-
-   };
-
+    navigate("/");
+  };
 
   return (
-    <Navbar expand="lg" bg="primary">
-      <Container
-        className="d-flex justify-content-around"
-        fluid
-        style={{ maxWidth: 1500 }}
-      >
-           <Link to="/">
+    <div>
+      <Navbar expand="lg" bg="primary">
+        <Container
+          className="d-flex justify-content-around"
+          fluid
+          style={{ maxWidth: 1500 }}
+        >
+          <Link to="/">
             <Navbar.Brand>
               <img src={logo} width="40" alt="IOT COMERCE" />
             </Navbar.Brand>
           </Link>
-           <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            { user.id ? (
+            {user.id ? (
               <div className="d-flex justify-content-around   ">
+                <div>
+                  <Link to={"/operationForm"}>
+                    <Button className="mr-1 bg-dark">Operación Nueva</Button>
+                  </Link>
+                </div>
+
                 <div className="text-white h3 d-flex justify-content-center align-items-center ">{`¡Hola, ${user.name}!`}</div>
                 <NavDropdown
                   variant="light"
@@ -79,8 +81,9 @@ const AppBar = () => {
               </div>
             )}
           </Navbar.Collapse>
-       </Container>
-    </Navbar>
+        </Container>
+      </Navbar>
+    </div>
   );
 };
 
