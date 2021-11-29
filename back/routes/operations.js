@@ -1,11 +1,8 @@
 const router = require("express").Router();
- 
-const {
-     addOne,
- } = require("../controllers/operations");
- 
- 
- 
+
+const { addOne, getAll } = require("../controllers/operations");
+
 router.post("/", addOne);
- 
+router.get("/", getAll );
+
 module.exports = router;

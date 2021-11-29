@@ -1,6 +1,6 @@
 import {
   createReducer,
-  createAction,
+ 
   createAsyncThunk,
 } from "@reduxjs/toolkit";
 import axios from "axios";
@@ -11,8 +11,15 @@ export const operation = createAsyncThunk("OPERATION_REQUEST", (data) => {
     .then((respuesta) => []);
 });
 
+export const operations = createAsyncThunk("OPERATIONS_GET", () => {
+  return axios
+  .get("http://localhost:8080/api/operations")
+  .then((r) => r.data);
+});
+ 
 const operationReducer = createReducer([], {
   [operation.fulfilled]: (state, action) => action.payload,
+  [operations.fulfilled]: (state, action) => action.payload,
 
 });
 
