@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+ import React,{ useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../state/user";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +14,7 @@ const Index = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    if (emailValidate == "mostrar" && emailValidate == "mostrar") {
+    if (emailValidate === "mostrar" && emailValidate === "mostrar") {
       dispatch(login({ email: email, password: password })).then((data) => {
         if (data.meta.requestStatus === "rejected") {
           setPassword("");
@@ -41,7 +40,7 @@ const Index = () => {
     let expresion = /\w+@\w+\.[a-z]/;
     //     \w (es texto)
     //     \. (es punto)
-    if (email != "" && expresion.test(email)) {
+    if (email !== "" && expresion.test(email)) {
       setEmailValidate("mostrar");
     } else {
       // el input esta vacio
@@ -50,7 +49,7 @@ const Index = () => {
   };
 
   const requeridoPassword = (e) => {
-    if (password != "") {
+    if (password !== "") {
       setPassworsdValidate("mostrar");
     } else {
       // el input esta vacio
@@ -67,9 +66,9 @@ const Index = () => {
             <input
               id="email_field"
               className={` form-control ${
-                emailValidate == "inicial"
+                emailValidate === "inicial"
                   ? ""
-                  : emailValidate == "mostrar"
+                  : emailValidate === "mostrar"
                   ? "is-valid "
                   : "is-invalid"
               }             
@@ -88,9 +87,9 @@ const Index = () => {
               type="password"
               id="password_field"
               className={` form-control ${
-                passwordValidate == "inicial"
+                passwordValidate === "inicial"
                   ? ""
-                  : passwordValidate == "mostrar"
+                  : passwordValidate === "mostrar"
                   ? "is-valid "
                   : "is-invalid"
               }             
