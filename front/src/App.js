@@ -1,7 +1,7 @@
-import React from "react";
+import React ,{useEffect}from "react";
 import axios from "axios";
 import Home from "./views/Home.jsx";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Login from "./components/Login/Index";
 import OperationForm from "./components/OperationForm/Index";
 
@@ -9,7 +9,7 @@ import Register from "./components/Register/Index";
 // import Footer from "./components/Footer.jsx";
 import AppBar from "./components/AppBar/AppBar";
 import "./App.css";
-import { BrowserRouter, Route,Routes } from "react-router-dom";
+import {  Route,Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"; 
 
 import { setUser } from "./state/user";
@@ -17,7 +17,7 @@ import { setUser } from "./state/user";
 const App = () => {
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem("token")
       ? localStorage.getItem("token")
       : undefined;
