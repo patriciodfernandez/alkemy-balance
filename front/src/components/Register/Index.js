@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import "../Login/Login.css";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { register } from "../../state/user";
 import swal from "sweetalert";
  
 
 const Index = () => {
-  let history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [newUser, setNewUser] = useState({});
 
@@ -20,10 +20,10 @@ const Index = () => {
   
 
     if (
-      emailValidate == "mostrar" &&
-       nameValidate == "mostrar" &&
-      passwordValidate == "mostrar" &&
-      lastNameValidate == "mostrar"
+      emailValidate === "mostrar" &&
+       nameValidate === "mostrar" &&
+      passwordValidate === "mostrar" &&
+      lastNameValidate === "mostrar"
     ) {
       console.log("ENTRE AL IFFFF")
       dispatch(register(newUser)).then((data) => {
@@ -31,7 +31,7 @@ const Index = () => {
           return swal("El usuario ya existe");
         } else {
           swal("¡Usuario registrado exitosamente!");
-          history.push("/login");
+          navigate("/login");
         }
       });
     }
@@ -48,7 +48,7 @@ const Index = () => {
     let expresion = /\w+@\w+\.[a-z]/;
     //     \w (es texto)
     //     \. (es punto)
-    if (newUser.email != "" && expresion.test(newUser.email)) {
+    if (newUser.email !== "" && expresion.test(newUser.email)) {
       setEmailValidate("mostrar");
     } else {
       // el input esta vacio
@@ -57,7 +57,7 @@ const Index = () => {
   };
 
   const requeridoPassword = (e) => {
-     if (newUser.password != ""  ) {
+     if (newUser.password !== ""  ) {
       setPassworsdValidate("mostrar");
     } else {
       // el input esta vacio
@@ -68,7 +68,7 @@ const Index = () => {
   const requeridoName = (e) => {
     let expresion = /[A-Za-z]/;
 
-    if (newUser.name != "" && expresion.test(newUser.name)) {
+    if (newUser.name !== "" && expresion.test(newUser.name)) {
       setNameValidate("mostrar");
     } else {
       // el input esta vacio
@@ -78,7 +78,7 @@ const Index = () => {
   const requeridoLastName = (e) => {
     let expresion = /[A-Za-z]/;
 
-    if (newUser.lastName != "" && expresion.test(newUser.lastName)) {
+    if (newUser.lastName !== "" && expresion.test(newUser.lastName)) {
       setLastNameValidate("mostrar");
     } else {
       // el input esta vacio
@@ -101,9 +101,9 @@ const Index = () => {
             type="name"
             id="name_field"
             className={` form-control ${
-              nameValidate == "inicial"
+              nameValidate === "inicial"
                 ? ""
-                : nameValidate == "mostrar"
+                : nameValidate === "mostrar"
                 ? "is-valid "
                 : "is-invalid"
             }             
@@ -121,9 +121,9 @@ const Index = () => {
             type="lastname"
             id="lastname_field"
             className={` form-control ${
-              lastNameValidate == "inicial"
+              lastNameValidate === "inicial"
                 ? ""
-                : lastNameValidate == "mostrar"
+                : lastNameValidate === "mostrar"
                 ? "is-valid "
                 : "is-invalid"
             }             
@@ -142,9 +142,9 @@ const Index = () => {
             type="email"
             id="email_field"
             className={` form-control ${
-              emailValidate == "inicial"
+              emailValidate === "inicial"
                 ? ""
-                : emailValidate == "mostrar"
+                : emailValidate === "mostrar"
                 ? "is-valid "
                 : "is-invalid"
             }             
@@ -163,9 +163,9 @@ const Index = () => {
             type="password"
             id="password_field"
             className={` form-control ${
-              passwordValidate == "inicial"
+              passwordValidate === "inicial"
                 ? ""
-                : passwordValidate == "mostrar"
+                : passwordValidate === "mostrar"
                 ? "is-valid "
                 : "is-invalid"
             }             
