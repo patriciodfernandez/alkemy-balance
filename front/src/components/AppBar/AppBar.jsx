@@ -34,14 +34,13 @@ const AppBar = () => {
       <Navbar expand="lg" bg="primary">
         <Container className="appbar">
           <div>
-            <Link to="/">
+            <Link exact to="/">
               <Navbar.Brand>
                 <img src={logo} width="40" alt="IOT COMERCE" />
               </Navbar.Brand>
             </Link>
           </div>
           <div>
-            {" "}
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               {user.id ? (
