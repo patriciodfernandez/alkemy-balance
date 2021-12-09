@@ -1,42 +1,47 @@
 import React from "react";
 import { operations } from "../state/operation";
- 
+import { useNavigate } from "react-router-dom";
+import { getOne } from "../state/operation";
+import { deleteProduct } from "../state/operation";
+
+
+
 import { useSelector, useDispatch } from "react-redux";
 import Table from "react-bootstrap/Table";
+
 const Home = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const user = useSelector((state) => state.user);
- 
   React.useEffect(() => {
     dispatch(operations());
   }, [dispatch]);
+  const user = useSelector((state) => state.user);
 
   // Todos las operaciones de la tablaschema
-  const arrayOperations = useSelector((state) => state.operation);
+  var arrayOperations = useSelector((state) => state.operation);
 
   // Todos las operaciones del usuario
-  const arrayOpUser = arrayOperations.filter((op) => {
-    return op.userId === user.id;
+  var arrayOpUser = arrayOperations?.filter((op) => {
+    return op.userId === user?.id;
   });
-console.log(arrayOpUser)
+  console.log("arrayOpUser,",arrayOpUser)
   // ultimas 10 operaciones
-  let arrayOpUserLast10 = arrayOpUser.slice(- 10);
-  console.log(arrayOpUserLast10)
+  var arrayOpUserLast10 = arrayOpUser.slice(-10);
 
   // Todos los ingresos
-  const arrayIngresos = arrayOpUser.filter((op) => {
+  var arrayIngresos = arrayOpUser.filter((op) => {
     return op.type === "ingreso";
   });
-  const arraytotalIngresos = [];
+  var arraytotalIngresos = [];
   arrayIngresos.forEach((op) => arraytotalIngresos.push(op.amount));
- 
+
   var totalIngresos = 0;
 
   for (let i of arraytotalIngresos) {
     totalIngresos += i;
   }
- 
+
   // Todos los Egresos
   const arrayEgresos = arrayOpUser.filter((op) => {
     return op.type === "egreso";
@@ -49,9 +54,19 @@ console.log(arrayOpUser)
   for (let i of arraytotalEgresos) {
     totalEgresos += i;
   }
- 
+
   // suma final
   const totalFinal = totalIngresos - totalEgresos;
+
+  const seleccionarOperation = (id) => {
+    dispatch(getOne(id)).then(navigate(`/operation/edit/${id}`));
+  };
+  const borrarOperation = (id) => {
+    dispatch(deleteProduct
+      (id)).then(navigate(`/`));
+  };
+  
+ 
   return (
     <div>
       {user.id ? (
@@ -64,13 +79,14 @@ console.log(arrayOpUser)
             </div>
           </div>
           <div className="row no-gutters m-1">
-            <Table bordered hover>
+            <Table responsive size="sm" bordered hover>
               <thead>
                 <tr>
                   <th>Concepto</th>
                   <th>Amount</th>
                   <th>Date</th>
                   <th>Type</th>
+                  <th>Options</th>
                 </tr>
               </thead>
               <tbody>
@@ -87,12 +103,26 @@ console.log(arrayOpUser)
                       <td>{op.amount}</td>
                       <td>{op.date}</td>
                       <td>{op.type}</td>
+                      <td>
+                        <button
+                          onClick={() => seleccionarOperation(op.id)}
+                          className="btn btn-sm text-light bg-secondary mx-2"
+                        >
+                          Editar
+                        </button>
+                        <button
+                          onClick={() => borrarOperation(op.id)}
+                          className="btn btn-sm text-light bg-danger  mx-2"
+                        >
+                          Borrar
+                        </button>
+                      </td>
                     </tr>
                   );
                 })}
               </tbody>
-              <br></br>
-              <thead>
+
+               <thead>
                 <tr>
                   <th> Saldo TOTAL </th>
 

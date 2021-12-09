@@ -10,6 +10,7 @@ const Index = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
   const [newOperation, setNewOperation] = useState({});
   if (user) {
     newOperation.userId = user.id;

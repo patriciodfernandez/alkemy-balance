@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../state/user";
 import swal from "sweetalert";
- 
+
 
 const Index = () => {
   const navigate = useNavigate();
